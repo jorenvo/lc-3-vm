@@ -1,7 +1,9 @@
 #![warn(clippy::all)]
 
+use crate::args::LC3Args;
 use crate::reader::Reader;
 
+mod args;
 mod reader;
 
 const MEMORY_SIZE: usize = 65_536;
@@ -50,7 +52,7 @@ enum CondFlags {
 }
 
 fn main() {
-    let r = Reader::new("/Users/macaroni/Code/lc-3/assembled/2048.obj".to_string());
+    let args = LC3Args::parse();
+    let r = Reader::new(args.path_to_assembled);
     dbg!(r.read());
-    println!("Hello, world!");
 }

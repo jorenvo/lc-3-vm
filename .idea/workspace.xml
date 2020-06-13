@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
@@ -22,9 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/reader.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/args.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/args.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +41,7 @@
     <option name="directoryName" value="wpzt56jq" />
   </component>
   <component name="ProjectId" id="1dHakU0erADYgfZtOs11axs6NE0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,7 +60,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
@@ -94,6 +88,7 @@
     <option name="runExternalLinterOnTheFly" value="true" />
     <option name="runRustfmtOnSave" value="true" />
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -105,7 +100,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
-      <workItem from="1592084618621" duration="4629000" />
+      <workItem from="1592084618621" duration="5137000" />
+      <workItem from="1592091467793" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -114,7 +110,21 @@
       <option name="project" value="LOCAL" />
       <updated>1592084900536</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Read assembled file">
+      <created>1592090945592</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592090945592</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Take assembly file path as argument">
+      <created>1592091624397</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592091624397</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,35 +140,38 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Read assembled file" />
+    <MESSAGE value="Take assembly file path as argument" />
+    <option name="LAST_COMMIT_MESSAGE" value="Take assembly file path as argument" />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="837" y="421" key="#Notifications/0.23.1920.1057@0.23.1920.1057" timestamp="1592084633130" />
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592090882304">
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592091419298">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592090882304" />
-    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592090882302">
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419298" />
+    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592091419297">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592090882302" />
-    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592090882301">
+    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419297" />
+    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592091419296">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592090882301" />
-    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592090882303">
+    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419296" />
+    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592091419297">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592090882303" />
-    <state x="461" y="190" key="SettingsEditor" timestamp="1592089304402">
+    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419297" />
+    <state x="461" y="190" key="SettingsEditor" timestamp="1592091417345">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="461" y="190" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592089304402" />
+    <state x="461" y="190" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592091417345" />
   </component>
 </project>
