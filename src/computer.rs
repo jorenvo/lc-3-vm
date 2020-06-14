@@ -35,8 +35,11 @@ impl Computer {
         if self.debug_mode {
             for register in registers {
                 self.debug_println(&format!(
-                    "{:>2}: {:#018b}",
-                    register, self.registers[*register]
+                    "{:>2}: {:#018b} {:#06x} {:05}",
+                    register,
+                    self.registers[*register],
+                    self.registers[*register],
+                    self.registers[*register]
                 ));
             }
         }
