@@ -117,15 +117,6 @@ impl Computer {
                     self.update_flags(self.registers[inst.dr()]);
                 }
 
-                constants::OPLOADIND => {
-                    println!("got oploadind");
-                    let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
-                    self.registers[inst.dr()] = self.memory[addr as usize];
-
-                    self.update_flags(self.registers[inst.dr()]);
-                }
-
                 constants::OPBR => {
                     println!("got opbr");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
@@ -167,6 +158,24 @@ impl Computer {
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     self.registers[inst.dr()] =
                         self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
+
+                    self.update_flags(self.registers[inst.dr()]);
+                }
+
+                constants::OPLOADIND => {
+                    println!("got oploadind");
+                    let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                    let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
+                    self.registers[inst.dr()] = self.memory[addr as usize];
+
+                    self.update_flags(self.registers[inst.dr()]);
+                }
+
+                constants::OPLOADREG => {
+                    println!("got oploadreg");
+                    let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
+                    self.registers[inst.dr()] =
+                        self.memory[(self.registers[inst.base_r()] + offset6) as usize];
 
                     self.update_flags(self.registers[inst.dr()]);
                 }

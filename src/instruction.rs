@@ -74,6 +74,10 @@ impl Instruction {
     pub fn is_base_r(&self) -> bool {
         self.n_flag()
     }
+
+    pub fn offset6(&self) -> u16 {
+        self.chunk(0, 5)
+    }
 }
 
 impl fmt::Display for Instruction {
