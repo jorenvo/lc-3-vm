@@ -55,6 +55,10 @@ impl Instruction {
         self.chunk(0, 8)
     }
 
+    pub fn pc_offset11(&self) -> u16 {
+        self.chunk(0, 10)
+    }
+
     pub fn n_flag(&self) -> bool {
         self.chunk(11, 11) > 0
     }
@@ -65,6 +69,10 @@ impl Instruction {
 
     pub fn p_flag(&self) -> bool {
         self.chunk(9, 9) > 0
+    }
+
+    pub fn is_base_r(&self) -> bool {
+        self.n_flag()
     }
 }
 

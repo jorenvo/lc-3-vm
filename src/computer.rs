@@ -150,6 +150,18 @@ impl Computer {
                     self.registers[constants::RPC] = self.registers[reg];
                 }
 
+                constants::OPJMPSUBR => {
+                    println!("got jump subr");
+                    self.registers[constants::R7] = self.registers[constants::RPC];
+
+                    self.registers[constants::RPC] = if inst.is_base_r() {
+                        self.registers[inst.base_r()]
+                    } else {
+                        self.registers[constants::RPC]
+                            + self.sign_extend_to_16_bits(inst.pc_offset11(), 11)
+                    }
+                }
+
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",
