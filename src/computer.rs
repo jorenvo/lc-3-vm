@@ -195,6 +195,16 @@ impl Computer {
                     self.update_flags(self.registers[inst.dr()]);
                 }
 
+                constants::OPSTORE => {
+                    let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                    self.memory[(self.registers[constants::RPC] + pc_offset9) as usize] =
+                        self.registers[inst.dr()]; // this is really a source register, but it's in the position of the destination register
+                }
+
+                constants::OPRTI | constants::OPRES => {
+                    panic!("OPRTI and OPRES not currently implemented");
+                }
+
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",
