@@ -88,8 +88,6 @@ impl Computer {
                     print!("{}", self.memory[string_addr] as u8 as char);
                     string_addr += 1;
                 }
-
-                println!();
             }
 
             constants::TRAPOUT => {
