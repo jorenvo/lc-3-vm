@@ -82,19 +82,33 @@ impl Computer {
 
                         match opcode {
                             constants::OPADD => {
-                                println!("got add");
+                                println!("got immediate add");
                                 self.registers[dst_register] =
                                     self.registers[src_register] + immediate_value
                             }
                             _ => {
                                 // constants::OPAND
-                                println!("got and");
+                                println!("got immediate and");
                                 self.registers[dst_register] =
                                     self.registers[src_register] & immediate_value
                             }
                         }
                     } else {
-                        panic!("Register add/and, not supported yet");
+                        let src_register2 = (instruction & 0b111) as usize;
+
+                        match opcode {
+                            constants::OPADD => {
+                                println!("got add");
+                                self.registers[dst_register] =
+                                    self.registers[src_register] + self.registers[src_register2]
+                            }
+                            _ => {
+                                // constants::OPAND
+                                println!("got and");
+                                self.registers[dst_register] =
+                                    self.registers[src_register] & self.registers[src_register2]
+                            }
+                        }
                     };
 
                     self.update_flags(self.registers[dst_register]);
