@@ -1,5 +1,6 @@
 use crate::constants;
 use crate::instruction::Instruction;
+use getch::Getch;
 
 pub struct Computer {
     memory: Vec<u16>,
@@ -83,6 +84,15 @@ impl Computer {
                 }
 
                 println!();
+            }
+
+            constants::TRAPOUT => {
+                print!("{}", self.registers[constants::R0] as u8 as char);
+            }
+
+            constants::TRAPGETC => {
+                let g = Getch::new();
+                self.debug_println(&format!("got {}", g.getch().unwrap() as char));
             }
 
             constants::TRAPHALT => {
