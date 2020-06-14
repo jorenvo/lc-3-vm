@@ -17,10 +17,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/computer.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,20 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Cargo Command.Test computer::tests">
+    <configuration name="Test computer::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package lc-3-vm --bin lc-3-vm computer::tests" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package lc-3 --bin lc-3" />
@@ -82,6 +93,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Test computer::tests" />
         <item itemvalue="Cargo Command.run" />
         <item itemvalue="Cargo Command.run" />
       </list>
@@ -105,7 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
       <workItem from="1592084618621" duration="5137000" />
-      <workItem from="1592091467793" duration="8773000" />
+      <workItem from="1592091467793" duration="12658000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -163,7 +175,28 @@
       <option name="project" value="LOCAL" />
       <updated>1592106173662</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Don't spellcheck code">
+      <created>1592106446492</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592106446492</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Allow unused constants until we've implemented them">
+      <created>1592106460434</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592106460434</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Don't save constants in Computer">
+      <created>1592106476559</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1592106476559</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,36 +223,51 @@
     <MESSAGE value="Read opcodes" />
     <MESSAGE value="Add simple_add.{asm,obj}" />
     <MESSAGE value="Update condition flags and watch registers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update condition flags and watch registers" />
+    <MESSAGE value="Don't spellcheck code" />
+    <MESSAGE value="Allow unused constants until we've implemented them" />
+    <MESSAGE value="Don't save constants in Computer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Don't save constants in Computer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="837" y="421" key="#Notifications/0.23.1920.1057@0.23.1920.1057" timestamp="1592084633130" />
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592096141712">
+    <state x="192" y="118" key="DiffContextDialog" timestamp="1592106527785">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141712" />
-    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592096141711">
+    <state x="192" y="118" key="DiffContextDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1592106527785" />
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592154806758">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141711" />
-    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592096141710">
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
+    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592154806758">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141710" />
-    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592096141711">
+    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
+    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592154806757">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141711" />
+    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806757" />
+    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592154806758">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
     <state x="923" y="246" key="SettingsEditor" timestamp="1592106390880">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="923" y="246" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592106390880" />
-    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup" timestamp="1592105638240">
+    <state x="560" y="291" key="Vcs.Push.Dialog.v2" timestamp="1592106536514">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1592105638240" />
+    <state x="560" y="291" key="Vcs.Push.Dialog.v2/0.23.1920.1057@0.23.1920.1057" timestamp="1592106536514" />
+    <state x="748" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592106488648">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="748" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1057@0.23.1920.1057" timestamp="1592106488648" />
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup" timestamp="1592117596400">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1592117596400" />
   </component>
 </project>
