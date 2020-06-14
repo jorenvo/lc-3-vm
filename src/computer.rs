@@ -6,10 +6,11 @@ pub struct Computer {
     memory: Vec<u16>,
     registers: Vec<u16>,
     running: bool,
+    debug_mode: bool,
 }
 
 impl Computer {
-    pub fn new() -> Computer {
+    pub fn new(debug_mode: bool) -> Computer {
         const MEMORY_SIZE: usize = 65_535; // 2^16 - 1
         const REGISTER_COUNT: usize = 16;
         let memory: Vec<u16> = vec![0; MEMORY_SIZE];
@@ -20,19 +21,24 @@ impl Computer {
             memory,
             registers,
             running,
+            debug_mode,
         }
     }
 
     fn debug_println(&self, s: &str) {
-        println!("[DEBUG] {}", s);
+        if self.debug_mode {
+            println!("[DEBUG] {}", s);
+        }
     }
 
     fn print_registers(&self, registers: &[usize]) {
-        for register in registers {
-            self.debug_println(&format!(
-                "{:>2}: {:#018b}",
-                register, self.registers[*register]
-            ));
+        if self.debug_mode {
+            for register in registers {
+                self.debug_println(&format!(
+                    "{:>2}: {:#018b}",
+                    register, self.registers[*register]
+                ));
+            }
         }
     }
 

@@ -14,7 +14,7 @@ fn main() {
     let args = LC3Args::parse();
     let reader = Reader::new(args.path_to_assembled);
     let words = reader.read();
-    let mut computer = Computer::new();
+    let mut computer = Computer::new(args.debug_mode);
 
     computer.init_memory(words);
     computer.run();

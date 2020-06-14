@@ -2,6 +2,7 @@ use clap::{App, Arg};
 
 pub struct LC3Args {
     pub path_to_assembled: String,
+    pub debug_mode: bool,
 }
 
 impl LC3Args {
@@ -19,10 +20,17 @@ impl LC3Args {
                     .required(true)
                     .takes_value(true),
             )
+            .arg(
+                Arg::with_name("debug mode")
+                    .short("d")
+                    .long("--debug")
+                    .help("Print the internal state of the machine"),
+            )
             .get_matches();
 
         LC3Args {
             path_to_assembled: matches.value_of("assembled file").unwrap().to_string(),
+            debug_mode: matches.is_present("debug mode"),
         }
     }
 }
