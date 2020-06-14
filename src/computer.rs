@@ -201,6 +201,14 @@ impl Computer {
                         self.registers[inst.dr()]; // this is really a source register, but it's in the position of the destination register
                 }
 
+                constants::OPSTOREIND => {
+                    let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                    let offset = self.registers[constants::RPC] + pc_offset9;
+
+                    let address = self.memory[offset as usize];
+                    self.memory[address as usize] = self.registers[inst.dr()];
+                }
+
                 constants::OPRTI | constants::OPRES => {
                     panic!("OPRTI and OPRES not currently implemented");
                 }
