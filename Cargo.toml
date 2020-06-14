@@ -1,5 +1,5 @@
 [package]
-name = "lc-3"
+name = "lc-3-vm"
 version = "0.1.0"
 authors = ["Joren Van Onder <joren@jvo.sh>"]
 edition = "2018"
