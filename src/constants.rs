@@ -35,5 +35,13 @@ pub const CONDPOSITIVE: usize = 1;
 pub const CONDZERO: usize = 1 << 1;
 pub const CONDNEGATIVE: usize = 1 << 2;
 
+// Traps
+pub const TRAPGETC: u16 = 0x20; // get character from keyboard, not echoed onto the terminal
+pub const TRAPOUT: u16 = 0x21; // output a character
+pub const TRAPPUTS: u16 = 0x22; // output a word string
+pub const TRAPIN: u16 = 0x23; // get character from keyboard, echoed onto the terminal
+pub const TRAPPUTSP: u16 = 0x24; // output a byte string
+pub const TRAPHALT: u16 = 0x25; // halt the program
+
 // Misc
 pub const DEFAULT_START: u16 = 0x3000;

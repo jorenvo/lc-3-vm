@@ -78,6 +78,10 @@ impl Instruction {
     pub fn offset6(&self) -> u16 {
         self.chunk(0, 5)
     }
+
+    pub fn trap_vect8(&self) -> u16 {
+        self.chunk(0, 7)
+    }
 }
 
 impl fmt::Display for Instruction {

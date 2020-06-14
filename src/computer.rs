@@ -4,6 +4,7 @@ use crate::instruction::Instruction;
 pub struct Computer {
     memory: Vec<u16>,
     registers: Vec<u16>,
+    running: bool,
 }
 
 impl Computer {
@@ -12,13 +13,25 @@ impl Computer {
         const REGISTER_COUNT: usize = 16;
         let memory: Vec<u16> = vec![0; MEMORY_SIZE];
         let registers: Vec<u16> = vec![0; REGISTER_COUNT];
+        let running = true;
 
-        Computer { memory, registers }
+        Computer {
+            memory,
+            registers,
+            running,
+        }
+    }
+
+    fn debug_println(&self, s: &str) {
+        println!("[DEBUG] {}", s);
     }
 
     fn print_registers(&self, registers: &[usize]) {
         for register in registers {
-            println!("{:>2}: {:#018b}", register, self.registers[*register]);
+            self.debug_println(&format!(
+                "{:>2}: {:#018b}",
+                register, self.registers[*register]
+            ));
         }
     }
 
@@ -55,6 +68,32 @@ impl Computer {
         } as u16;
     }
 
+    fn halt(&mut self) {
+        self.running = false;
+    }
+
+    fn handle_trap(&mut self, trap: u16) {
+        match trap {
+            constants::TRAPPUTS => {
+                let mut string_addr = self.registers[constants::R0] as usize;
+
+                while self.memory[string_addr] != 0 {
+                    print!("{}", self.memory[string_addr] as u8 as char);
+                    string_addr += 1;
+                }
+
+                println!();
+            }
+
+            constants::TRAPHALT => {
+                self.debug_println("Program exited.");
+                self.halt();
+            }
+
+            _ => panic!("Trap {} not implemented", trap),
+        }
+    }
+
     pub fn init_memory(&mut self, words: Vec<u16>) {
         let origin = words[0] as usize;
         self.memory[origin..(origin + words.len() - 1)].copy_from_slice(&words[1..]);
@@ -64,18 +103,17 @@ impl Computer {
         self.registers[constants::RPC] = constants::DEFAULT_START;
 
         let watched_registers = vec![constants::R0, constants::RPC, constants::RCOND];
-        let mut running = true;
-        while running {
+        while self.running {
             let inst = Instruction::new(self.memory[self.registers[constants::RPC] as usize]);
 
             // immediately go to next instruction, LDI assumes this
             self.registers[constants::RPC] += 1;
 
-            println!("Processing instruction {}", inst);
+            self.debug_println(&format!("Processing instruction {}", inst));
 
             if inst.all() == 0 {
-                println!("0 instruction, stopping");
-                running = false;
+                self.debug_println("0 instruction, stopping");
+                self.halt();
                 continue;
             }
 
@@ -87,13 +125,13 @@ impl Computer {
 
                         match opcode {
                             constants::OPADD => {
-                                println!("got immediate add");
+                                self.debug_println("got immediate add");
                                 self.registers[inst.dr()] =
                                     self.registers[inst.sr1()] + immediate_value
                             }
                             _ => {
                                 // constants::OPAND
-                                println!("got immediate and");
+                                self.debug_println("got immediate and");
                                 self.registers[inst.dr()] =
                                     self.registers[inst.sr1()] & immediate_value
                             }
@@ -101,13 +139,13 @@ impl Computer {
                     } else {
                         match opcode {
                             constants::OPADD => {
-                                println!("got add");
+                                self.debug_println("got add");
                                 self.registers[inst.dr()] =
                                     self.registers[inst.sr1()] + self.registers[inst.sr2()]
                             }
                             _ => {
                                 // constants::OPAND
-                                println!("got and");
+                                self.debug_println("got and");
                                 self.registers[inst.dr()] =
                                     self.registers[inst.sr1()] & self.registers[inst.sr2()]
                             }
@@ -118,20 +156,20 @@ impl Computer {
                 }
 
                 constants::OPBR => {
-                    println!("got opbr");
+                    self.debug_println("got opbr");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
 
                     if (inst.n_flag() && self.registers[constants::CONDNEGATIVE] > 0)
                         || (inst.z_flag() && self.registers[constants::CONDZERO] > 0)
                         || (inst.p_flag() && self.registers[constants::CONDPOSITIVE] > 0)
                     {
-                        println!("branching");
+                        self.debug_println("branching");
                         self.registers[constants::RPC] += pc_offset;
                     }
                 }
 
                 constants::OPJUMP => {
-                    println!("got jump");
+                    self.debug_println("got jump");
                     let mut reg = inst.base_r();
 
                     if reg == 0b111 {
@@ -142,7 +180,7 @@ impl Computer {
                 }
 
                 constants::OPJMPSUBR => {
-                    println!("got jump subr");
+                    self.debug_println("got jump subr");
                     self.registers[constants::R7] = self.registers[constants::RPC];
 
                     self.registers[constants::RPC] = if inst.is_base_r() {
@@ -154,7 +192,7 @@ impl Computer {
                 }
 
                 constants::OPLOAD => {
-                    println!("got load");
+                    self.debug_println("got load");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     self.registers[inst.dr()] =
                         self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
@@ -163,7 +201,7 @@ impl Computer {
                 }
 
                 constants::OPLOADIND => {
-                    println!("got oploadind");
+                    self.debug_println("got oploadind");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
                     self.registers[inst.dr()] = self.memory[addr as usize];
@@ -172,7 +210,7 @@ impl Computer {
                 }
 
                 constants::OPLOADREG => {
-                    println!("got oploadreg");
+                    self.debug_println("got oploadreg");
                     let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
                     self.registers[inst.dr()] =
                         self.memory[(self.registers[inst.base_r()] + offset6) as usize];
@@ -181,7 +219,7 @@ impl Computer {
                 }
 
                 constants::OPLOADEA => {
-                    println!("got oploadea");
+                    self.debug_println("got oploadea");
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     self.registers[inst.dr()] = self.registers[constants::RPC] + pc_offset9;
 
@@ -189,7 +227,7 @@ impl Computer {
                 }
 
                 constants::OPNOT => {
-                    println!("got opnot");
+                    self.debug_println("got opnot");
                     self.registers[inst.dr()] = !self.registers[inst.sr1()];
 
                     self.update_flags(self.registers[inst.dr()]);
@@ -215,17 +253,18 @@ impl Computer {
                         self.registers[inst.dr()]; // this is really a source register
                 }
 
+                constants::OPTRAP => {
+                    self.registers[constants::R7] = self.registers[constants::RPC];
+                    self.handle_trap(inst.trap_vect8());
+                }
+
                 constants::OPRTI | constants::OPRES => {
                     panic!("OPRTI and OPRES not currently implemented");
                 }
 
                 _ => {
-                    println!(
-                        "Stopping computer because of unsupported opcode {:#06b}",
-                        opcode
-                    );
-
-                    running = false;
+                    self.debug_println(&format!("Bad opcode {:#06b}", opcode));
+                    self.halt();
                 }
             };
 
