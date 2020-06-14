@@ -3,9 +3,6 @@ use crate::constants;
 pub struct Computer {
     memory: Vec<u16>,
     registers: Vec<u16>,
-
-    memory_size: usize,
-    register_count: usize,
 }
 
 impl Computer {
@@ -15,12 +12,7 @@ impl Computer {
         let memory: Vec<u16> = vec![0; MEMORY_SIZE];
         let registers: Vec<u16> = vec![0; REGISTER_COUNT];
 
-        Computer {
-            memory,
-            registers,
-            memory_size: MEMORY_SIZE,
-            register_count: REGISTER_COUNT,
-        }
+        Computer { memory, registers }
     }
 
     fn print_registers(&self, registers: &[usize]) {
