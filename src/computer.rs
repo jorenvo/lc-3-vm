@@ -180,6 +180,21 @@ impl Computer {
                     self.update_flags(self.registers[inst.dr()]);
                 }
 
+                constants::OPLOADEA => {
+                    println!("got oploadea");
+                    let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                    self.registers[inst.dr()] = self.registers[constants::RPC] + pc_offset9;
+
+                    self.update_flags(self.registers[inst.dr()]);
+                }
+
+                constants::OPNOT => {
+                    println!("got opnot");
+                    self.registers[inst.dr()] = !self.registers[inst.sr1()];
+
+                    self.update_flags(self.registers[inst.dr()]);
+                }
+
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",
