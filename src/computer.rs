@@ -206,7 +206,13 @@ impl Computer {
                     let offset = self.registers[constants::RPC] + pc_offset9;
 
                     let address = self.memory[offset as usize];
-                    self.memory[address as usize] = self.registers[inst.dr()];
+                    self.memory[address as usize] = self.registers[inst.dr()]; // this is really a source register
+                }
+
+                constants::OPSTOREREG => {
+                    let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
+                    self.memory[(self.registers[inst.base_r()] + offset6) as usize] =
+                        self.registers[inst.dr()]; // this is really a source register
                 }
 
                 constants::OPRTI | constants::OPRES => {
