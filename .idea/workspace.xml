@@ -17,8 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/instruction.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/computer.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
       <workItem from="1592084618621" duration="5137000" />
-      <workItem from="1592091467793" duration="12658000" />
+      <workItem from="1592091467793" duration="16529000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -196,7 +198,28 @@
       <option name="project" value="LOCAL" />
       <updated>1592106476559</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Handle negative numbers">
+      <created>1592155657879</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1592155657879</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Handle OPAND">
+      <created>1592156968263</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1592156968263</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Handle two register versions of OPADD and OPAND">
+      <created>1592157211580</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1592157211580</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +249,10 @@
     <MESSAGE value="Don't spellcheck code" />
     <MESSAGE value="Allow unused constants until we've implemented them" />
     <MESSAGE value="Don't save constants in Computer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Don't save constants in Computer" />
+    <MESSAGE value="Handle negative numbers" />
+    <MESSAGE value="Handle OPAND" />
+    <MESSAGE value="Handle two register versions of OPADD and OPAND" />
+    <option name="LAST_COMMIT_MESSAGE" value="Handle two register versions of OPADD and OPAND" />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
@@ -237,22 +263,22 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="192" y="118" key="DiffContextDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1592106527785" />
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592154806758">
+    <state width="1686" height="255" key="GridCell.Tab.0.bottom" timestamp="1592155661975">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
-    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592154806758">
+    <state width="1686" height="255" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661975" />
+    <state width="1686" height="255" key="GridCell.Tab.0.center" timestamp="1592155661974">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
-    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592154806757">
+    <state width="1686" height="255" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661974" />
+    <state width="1686" height="255" key="GridCell.Tab.0.left" timestamp="1592155661974">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806757" />
-    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592154806758">
+    <state width="1686" height="255" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661974" />
+    <state width="1686" height="255" key="GridCell.Tab.0.right" timestamp="1592155661975">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592154806758" />
+    <state width="1686" height="255" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661975" />
     <state x="923" y="246" key="SettingsEditor" timestamp="1592106390880">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>

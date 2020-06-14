@@ -1,4 +1,5 @@
 use crate::constants;
+use crate::instruction::Instruction;
 
 pub struct Computer {
     memory: Vec<u16>,
@@ -65,54 +66,51 @@ impl Computer {
         let watched_registers = vec![constants::R0, constants::RPC, constants::RCOND];
         let mut running = true;
         while running {
-            let instruction = self.memory[self.registers[constants::RPC] as usize];
+            let inst = Instruction::new(self.memory[self.registers[constants::RPC] as usize]);
 
-            println!("Processing instruction {:#018b}", instruction);
+            // immediately go to next instruction, LDI assumes this
+            self.registers[constants::RPC] += 1;
 
-            let opcode = instruction >> 12;
+            println!("Processing instruction {}", inst);
+
+            let opcode = inst.opcode();
             match opcode {
                 constants::OPADD | constants::OPAND => {
-                    let dst_register = ((instruction >> 9) & 0b111) as usize;
-                    let src_register = ((instruction >> 6) & 0b111) as usize;
-                    let is_immediate = (instruction & 0b10_0000) > 0;
-
-                    if is_immediate {
-                        let immediate_value =
-                            self.sign_extend_to_16_bits(instruction & 0b1_1111, 5);
+                    if inst.is_imm() {
+                        let immediate_value = self.sign_extend_to_16_bits(inst.imm5(), 5);
 
                         match opcode {
                             constants::OPADD => {
                                 println!("got immediate add");
-                                self.registers[dst_register] =
-                                    self.registers[src_register] + immediate_value
+                                self.registers[inst.dr()] =
+                                    self.registers[inst.sr1()] + immediate_value
                             }
                             _ => {
                                 // constants::OPAND
                                 println!("got immediate and");
-                                self.registers[dst_register] =
-                                    self.registers[src_register] & immediate_value
+                                self.registers[inst.dr()] =
+                                    self.registers[inst.sr1()] & immediate_value
                             }
                         }
                     } else {
-                        let src_register2 = (instruction & 0b111) as usize;
-
                         match opcode {
                             constants::OPADD => {
                                 println!("got add");
-                                self.registers[dst_register] =
-                                    self.registers[src_register] + self.registers[src_register2]
+                                self.registers[inst.dr()] =
+                                    self.registers[inst.sr1()] + self.registers[inst.sr2()]
                             }
                             _ => {
                                 // constants::OPAND
                                 println!("got and");
-                                self.registers[dst_register] =
-                                    self.registers[src_register] & self.registers[src_register2]
+                                self.registers[inst.dr()] =
+                                    self.registers[inst.sr1()] & self.registers[inst.sr2()]
                             }
                         }
                     };
 
-                    self.update_flags(self.registers[dst_register]);
+                    self.update_flags(self.registers[inst.dr()]);
                 }
+                constants::OPLOADIND => {}
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",
@@ -124,9 +122,6 @@ impl Computer {
             };
 
             self.print_registers(&watched_registers);
-
-            // go to next instruction
-            self.registers[constants::RPC] += 1;
         }
     }
 }

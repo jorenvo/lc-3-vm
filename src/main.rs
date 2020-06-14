@@ -7,6 +7,7 @@ use crate::reader::Reader;
 mod args;
 mod computer;
 mod constants;
+mod instruction;
 mod reader;
 
 fn main() {
