@@ -1,11 +1,5 @@
 use crate::constants;
 
-enum CondFlags {
-    Positive = 1,
-    Zero = 1 << 1,
-    Negative = 1 << 2,
-}
-
 pub struct Computer {
     memory: Vec<u16>,
     registers: Vec<u16>,
@@ -29,6 +23,21 @@ impl Computer {
         }
     }
 
+    fn print_registers(&self, registers: &[usize]) {
+        for register in registers {
+            println!("{:>2}: {:#018b}", register, self.registers[*register]);
+        }
+    }
+
+    fn update_flags(&mut self, result: i16) {
+        self.registers[constants::RCOND] = match result {
+            result if result < 0 => constants::CONDNEGATIVE,
+            result if result == 0 => constants::CONDZERO,
+            result if result > 0 => constants::CONDPOSITIVE,
+            _ => panic!("What?"),
+        }
+    }
+
     pub fn init_memory(&mut self, words: Vec<u16>) {
         let origin = words[0] as usize;
         self.memory[origin..(origin + words.len() - 1)].copy_from_slice(&words[1..]);
@@ -37,18 +46,46 @@ impl Computer {
     pub fn run(&mut self) {
         self.registers[constants::RPC] = constants::DEFAULT_START;
 
-        let running = true;
+        let watched_registers = vec![constants::R0, constants::RPC, constants::RCOND];
+        let mut running = true;
         while running {
-            let opcode = self.memory[self.registers[constants::RPC] as usize];
+            let instruction = self.memory[self.registers[constants::RPC] as usize];
+
+            println!("Processing instruction {:#018b}", instruction);
+
+            let opcode = instruction >> 12;
             match opcode {
-                0x1 => {
+                0b0001 => {
+                    let dest_register = ((instruction >> 9) & 0b111) as usize;
+                    let src_register = ((instruction >> 6) & 0b111) as usize;
+                    let is_immediate_add = (instruction & 0b10_0000) > 0;
+
+                    if is_immediate_add {
+                        let immediate_value = instruction & 0b1_1111; // TODO sign extend, negative numbers
+                        self.registers[dest_register] =
+                            self.registers[src_register] + immediate_value;
+                    } else {
+                        panic!("Register add, not supported yet");
+                    };
+
+                    self.update_flags(self.registers[dest_register] as i16);
                     println!("got add");
-                    self.registers[constants::RPC] += 16;
                 }
+                0b0101 => println!("got and"),
                 _ => {
-                    panic!("Unsupported operand {:#018b}", opcode);
+                    println!(
+                        "Stopping computer because of unsupported opcode {:#06b}",
+                        opcode
+                    );
+
+                    running = false;
                 }
             };
+
+            self.print_registers(&watched_registers);
+
+            // go to next instruction
+            self.registers[constants::RPC] += 1;
         }
     }
 }

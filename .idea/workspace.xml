@@ -17,12 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/macaroni.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assembled/simple_add.asm" beforeDir="false" afterPath="$PROJECT_DIR$/assembled/simple_add.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/computer.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
       <workItem from="1592084618621" duration="5137000" />
-      <workItem from="1592091467793" duration="4708000" />
+      <workItem from="1592091467793" duration="8430000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -137,7 +135,28 @@
       <option name="project" value="LOCAL" />
       <updated>1592101889134</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add hello_world.{asm,obj} example">
+      <created>1592102403788</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592102403788</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Read opcodes">
+      <created>1592102497840</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592102497840</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add simple_add.{asm,obj}">
+      <created>1592103362267</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592103362267</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +179,10 @@
     <MESSAGE value="Read assembled file" />
     <MESSAGE value="Take assembly file path as argument" />
     <MESSAGE value="Add rogue.obj" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add rogue.obj" />
+    <MESSAGE value="Add hello_world.{asm,obj} example" />
+    <MESSAGE value="Read opcodes" />
+    <MESSAGE value="Add simple_add.{asm,obj}" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add simple_add.{asm,obj}" />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
@@ -187,5 +209,9 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="461" y="190" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592100892846" />
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup" timestamp="1592105638240">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1592105638240" />
   </component>
 </project>

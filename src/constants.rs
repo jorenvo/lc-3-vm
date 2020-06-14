@@ -29,5 +29,10 @@ pub const OPRES: usize = 13; // reserved (unused)
 pub const OPLOADEA: usize = 14; // load effective address
 pub const OPTRAP: usize = 15; // execute trap
 
+// Condition flags
+pub const CONDPOSITIVE: u16 = 1;
+pub const CONDZERO: u16 = 1 << 1;
+pub const CONDNEGATIVE: u16 = 1 << 2;
+
 // Misc
 pub const DEFAULT_START: u16 = 0x3000;
