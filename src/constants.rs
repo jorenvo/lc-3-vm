@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // Registers
 pub const R0: usize = 0;
 pub const R1: usize = 1;
