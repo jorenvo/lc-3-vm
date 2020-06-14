@@ -17,7 +17,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/args.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/args.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/macaroni.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +55,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -60,7 +66,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunManager">
     <configuration name="run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
@@ -101,7 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
       <workItem from="1592084618621" duration="5137000" />
-      <workItem from="1592091467793" duration="190000" />
+      <workItem from="1592091467793" duration="4708000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -124,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592091624397</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add rogue.obj">
+      <created>1592101889134</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592101889134</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,32 +159,33 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Read assembled file" />
     <MESSAGE value="Take assembly file path as argument" />
-    <option name="LAST_COMMIT_MESSAGE" value="Take assembly file path as argument" />
+    <MESSAGE value="Add rogue.obj" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add rogue.obj" />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="837" y="421" key="#Notifications/0.23.1920.1057@0.23.1920.1057" timestamp="1592084633130" />
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592091419298">
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1592096141712">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419298" />
-    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592091419297">
+    <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141712" />
+    <state width="1878" height="290" key="GridCell.Tab.0.center" timestamp="1592096141711">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419297" />
-    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592091419296">
+    <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141711" />
+    <state width="1878" height="290" key="GridCell.Tab.0.left" timestamp="1592096141710">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419296" />
-    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592091419297">
+    <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141710" />
+    <state width="1878" height="290" key="GridCell.Tab.0.right" timestamp="1592096141711">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592091419297" />
-    <state x="461" y="190" key="SettingsEditor" timestamp="1592091417345">
+    <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592096141711" />
+    <state x="461" y="190" key="SettingsEditor" timestamp="1592100892846">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="461" y="190" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592091417345" />
+    <state x="461" y="190" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592100892846" />
   </component>
 </project>
