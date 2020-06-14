@@ -110,7 +110,13 @@ impl Computer {
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
-                constants::OPLOADIND => {}
+                constants::OPLOADIND => {
+                    let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                    let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
+                    self.registers[inst.dr()] = self.memory[addr as usize];
+
+                    self.update_flags(self.registers[inst.dr()]);
+                }
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",

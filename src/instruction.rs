@@ -42,6 +42,10 @@ impl Instruction {
     pub fn imm5(&self) -> u16 {
         self.chunk(0, 4)
     }
+
+    pub fn pc_offset9(&self) -> u16 {
+        self.chunk(0, 8)
+    }
 }
 
 impl fmt::Display for Instruction {
