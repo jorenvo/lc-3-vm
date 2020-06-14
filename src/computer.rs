@@ -73,6 +73,12 @@ impl Computer {
 
             println!("Processing instruction {}", inst);
 
+            if inst.all() == 0 {
+                println!("0 instruction, stopping");
+                running = false;
+                continue;
+            }
+
             let opcode = inst.opcode();
             match opcode {
                 constants::OPADD | constants::OPAND => {
@@ -124,12 +130,6 @@ impl Computer {
                     println!("got opbr");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
 
-                    if !(inst.n_flag() | inst.z_flag() | inst.p_flag()) {
-                        println!("Invalid OPBR, no flags set");
-                        running = false;
-                        continue;
-                    }
-
                     if (inst.n_flag() && self.registers[constants::CONDNEGATIVE] > 0)
                         || (inst.z_flag() && self.registers[constants::CONDZERO] > 0)
                         || (inst.p_flag() && self.registers[constants::CONDPOSITIVE] > 0)
@@ -137,6 +137,17 @@ impl Computer {
                         println!("branching");
                         self.registers[constants::RPC] += pc_offset;
                     }
+                }
+
+                constants::OPJUMP => {
+                    println!("got jump");
+                    let mut reg = inst.base_r();
+
+                    if reg == 0b111 {
+                        reg = constants::R7;
+                    }
+
+                    self.registers[constants::RPC] = self.registers[reg];
                 }
 
                 _ => {

@@ -19,6 +19,10 @@ impl Instruction {
         self.content >> start & mask >> (16 - length)
     }
 
+    pub fn all(&self) -> u16 {
+        self.content
+    }
+
     pub fn opcode(&self) -> u16 {
         self.chunk(12, 15)
     }
@@ -29,6 +33,10 @@ impl Instruction {
 
     pub fn sr1(&self) -> usize {
         self.chunk(6, 8) as usize
+    }
+
+    pub fn base_r(&self) -> usize {
+        self.sr1()
     }
 
     pub fn sr2(&self) -> usize {
