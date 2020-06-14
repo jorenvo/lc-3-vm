@@ -46,6 +46,18 @@ impl Instruction {
     pub fn pc_offset9(&self) -> u16 {
         self.chunk(0, 8)
     }
+
+    pub fn n_flag(&self) -> bool {
+        self.chunk(11, 11) > 0
+    }
+
+    pub fn z_flag(&self) -> bool {
+        self.chunk(10, 10) > 0
+    }
+
+    pub fn p_flag(&self) -> bool {
+        self.chunk(9, 9) > 0
+    }
 }
 
 impl fmt::Display for Instruction {

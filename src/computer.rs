@@ -52,7 +52,7 @@ impl Computer {
             constants::CONDZERO
         } else {
             constants::CONDPOSITIVE
-        };
+        } as u16;
     }
 
     pub fn init_memory(&mut self, words: Vec<u16>) {
@@ -110,13 +110,35 @@ impl Computer {
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
+
                 constants::OPLOADIND => {
+                    println!("got oploadind");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
                     self.registers[inst.dr()] = self.memory[addr as usize];
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
+
+                constants::OPBR => {
+                    println!("got opbr");
+                    let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+
+                    if !(inst.n_flag() | inst.z_flag() | inst.p_flag()) {
+                        println!("Invalid OPBR, no flags set");
+                        running = false;
+                        continue;
+                    }
+
+                    if (inst.n_flag() && self.registers[constants::CONDNEGATIVE] > 0)
+                        || (inst.z_flag() && self.registers[constants::CONDZERO] > 0)
+                        || (inst.p_flag() && self.registers[constants::CONDPOSITIVE] > 0)
+                    {
+                        println!("branching");
+                        self.registers[constants::RPC] += pc_offset;
+                    }
+                }
+
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",

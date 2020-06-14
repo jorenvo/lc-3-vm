@@ -31,9 +31,9 @@ pub const OPLOADEA: u16 = 14; // load effective address
 pub const OPTRAP: u16 = 15; // execute trap
 
 // Condition flags
-pub const CONDPOSITIVE: u16 = 1;
-pub const CONDZERO: u16 = 1 << 1;
-pub const CONDNEGATIVE: u16 = 1 << 2;
+pub const CONDPOSITIVE: usize = 1;
+pub const CONDZERO: usize = 1 << 1;
+pub const CONDNEGATIVE: usize = 1 << 2;
 
 // Misc
 pub const DEFAULT_START: u16 = 0x3000;
