@@ -13,22 +13,22 @@ pub const RCOND: usize = 9;
 pub const RCOUNT: usize = 10;
 
 // Opcodes
-pub const OPBR: usize = 0; // branch
-pub const OPADD: usize = 1; // add
-pub const OPLOAD: usize = 2; // load
-pub const OPSTORE: usize = 3; // store
-pub const OPJMPREG: usize = 4; // jump register
-pub const OPAND: usize = 5; // bitwise and
-pub const OPLOADREG: usize = 6; // load register
-pub const OPSTOREREG: usize = 7; // store register
-pub const OPRTI: usize = 8; // unused
-pub const OPNOT: usize = 9; // bitwise not
-pub const OPLOADIND: usize = 10; // load indirect
-pub const OPSTOREIND: usize = 11; // store indirect
-pub const OPJUMP: usize = 12; // jump
-pub const OPRES: usize = 13; // reserved (unused)
-pub const OPLOADEA: usize = 14; // load effective address
-pub const OPTRAP: usize = 15; // execute trap
+pub const OPBR: u16 = 0; // branch
+pub const OPADD: u16 = 1; // add
+pub const OPLOAD: u16 = 2; // load
+pub const OPSTORE: u16 = 3; // store
+pub const OPJMPREG: u16 = 4; // jump register
+pub const OPAND: u16 = 5; // bitwise and
+pub const OPLOADREG: u16 = 6; // load register
+pub const OPSTOREREG: u16 = 7; // store register
+pub const OPRTI: u16 = 8; // unused
+pub const OPNOT: u16 = 9; // bitwise not
+pub const OPLOADIND: u16 = 10; // load indirect
+pub const OPSTOREIND: u16 = 11; // store indirect
+pub const OPJUMP: u16 = 12; // jump
+pub const OPRES: u16 = 13; // reserved (unused)
+pub const OPLOADEA: u16 = 14; // load effective address
+pub const OPTRAP: u16 = 15; // execute trap
 
 // Condition flags
 pub const CONDPOSITIVE: u16 = 1;

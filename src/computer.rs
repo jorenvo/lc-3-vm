@@ -71,24 +71,34 @@ impl Computer {
 
             let opcode = instruction >> 12;
             match opcode {
-                0b0001 => {
-                    let dest_register = ((instruction >> 9) & 0b111) as usize;
+                constants::OPADD | constants::OPAND => {
+                    let dst_register = ((instruction >> 9) & 0b111) as usize;
                     let src_register = ((instruction >> 6) & 0b111) as usize;
-                    let is_immediate_add = (instruction & 0b10_0000) > 0;
+                    let is_immediate = (instruction & 0b10_0000) > 0;
 
-                    if is_immediate_add {
+                    if is_immediate {
                         let immediate_value =
                             self.sign_extend_to_16_bits(instruction & 0b1_1111, 5);
-                        self.registers[dest_register] =
-                            self.registers[src_register] + immediate_value;
+
+                        match opcode {
+                            constants::OPADD => {
+                                println!("got add");
+                                self.registers[dst_register] =
+                                    self.registers[src_register] + immediate_value
+                            }
+                            _ => {
+                                // constants::OPAND
+                                println!("got and");
+                                self.registers[dst_register] =
+                                    self.registers[src_register] & immediate_value
+                            }
+                        }
                     } else {
-                        panic!("Register add, not supported yet");
+                        panic!("Register add/and, not supported yet");
                     };
 
-                    self.update_flags(self.registers[dest_register]);
-                    println!("got add");
+                    self.update_flags(self.registers[dst_register]);
                 }
-                0b0101 => println!("got and"),
                 _ => {
                     println!(
                         "Stopping computer because of unsupported opcode {:#06b}",
