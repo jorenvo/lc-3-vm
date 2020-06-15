@@ -182,9 +182,12 @@ impl Computer {
                 constants::OPBR => {
                     self.debug_println("got opbr");
 
-                    if (inst.n_flag() && self.registers[constants::CONDNEGATIVE] > 0)
-                        || (inst.z_flag() && self.registers[constants::CONDZERO] > 0)
-                        || (inst.p_flag() && self.registers[constants::CONDPOSITIVE] > 0)
+                    if (inst.n_flag()
+                        && self.registers[constants::RCOND] == constants::CONDNEGATIVE)
+                        || (inst.z_flag()
+                            && self.registers[constants::RCOND] == constants::CONDZERO)
+                        || (inst.p_flag()
+                            && self.registers[constants::RCOND] == constants::CONDPOSITIVE)
                     {
                         self.debug_println("branching");
                         let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
