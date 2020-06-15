@@ -1,6 +1,9 @@
 LC-3 VM in Rust
 ===============
 
+To run:
+$ cargo run -- -f programs/2048.obj
+
 Useful links:
 - https://justinmeiners.github.io/lc3-vm/
 - https://justinmeiners.github.io/lc3-vm/supplies/lc3-isa.pdf
