@@ -120,7 +120,13 @@ impl Computer {
     pub fn run(&mut self) {
         self.registers[constants::RPC] = constants::DEFAULT_START;
 
-        let watched_registers = vec![constants::R0, constants::RPC, constants::RCOND];
+        let watched_registers = vec![
+            constants::R0,
+            constants::R1,
+            constants::R4,
+            constants::RPC,
+            constants::RCOND,
+        ];
         while self.running {
             let inst = Instruction::new(self.memory[self.registers[constants::RPC] as usize]);
 
@@ -252,12 +258,14 @@ impl Computer {
                 }
 
                 constants::OPSTORE => {
+                    self.debug_println("got opstore");
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     self.memory[(self.registers[constants::RPC] + pc_offset9) as usize] =
                         self.registers[inst.dr()]; // this is really a source register, but it's in the position of the destination register
                 }
 
                 constants::OPSTOREIND => {
+                    self.debug_println("got opstoreind");
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     let offset = self.registers[constants::RPC] + pc_offset9;
 
@@ -266,12 +274,14 @@ impl Computer {
                 }
 
                 constants::OPSTOREREG => {
+                    self.debug_println("got opstorereg");
                     let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
                     self.memory[(self.registers[inst.base_r()] + offset6) as usize] =
                         self.registers[inst.dr()]; // this is really a source register
                 }
 
                 constants::OPTRAP => {
+                    self.debug_println("got optrap");
                     self.registers[constants::R7] = self.registers[constants::RPC];
                     self.handle_trap(inst.trap_vect8());
                 }
