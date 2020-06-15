@@ -151,7 +151,7 @@ impl Computer {
                             constants::OPADD => {
                                 self.debug_println("got immediate add");
                                 self.registers[inst.dr()] =
-                                    self.registers[inst.sr1()] + immediate_value
+                                    self.registers[inst.sr1()].wrapping_add(immediate_value)
                             }
                             _ => {
                                 // constants::OPAND
@@ -164,8 +164,8 @@ impl Computer {
                         match opcode {
                             constants::OPADD => {
                                 self.debug_println("got add");
-                                self.registers[inst.dr()] =
-                                    self.registers[inst.sr1()] + self.registers[inst.sr2()]
+                                self.registers[inst.dr()] = self.registers[inst.sr1()]
+                                    .wrapping_add(self.registers[inst.sr2()])
                             }
                             _ => {
                                 // constants::OPAND
@@ -181,14 +181,15 @@ impl Computer {
 
                 constants::OPBR => {
                     self.debug_println("got opbr");
-                    let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
 
                     if (inst.n_flag() && self.registers[constants::CONDNEGATIVE] > 0)
                         || (inst.z_flag() && self.registers[constants::CONDZERO] > 0)
                         || (inst.p_flag() && self.registers[constants::CONDPOSITIVE] > 0)
                     {
                         self.debug_println("branching");
-                        self.registers[constants::RPC] += pc_offset;
+                        let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
+                        self.registers[constants::RPC] =
+                            self.registers[constants::RPC].wrapping_add(pc_offset);
                     }
                 }
 
@@ -211,15 +212,15 @@ impl Computer {
                         self.registers[inst.base_r()]
                     } else {
                         self.registers[constants::RPC]
-                            + self.sign_extend_to_16_bits(inst.pc_offset11(), 11)
+                            .wrapping_add(self.sign_extend_to_16_bits(inst.pc_offset11(), 11))
                     }
                 }
 
                 constants::OPLOAD => {
                     self.debug_println("got load");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    self.registers[inst.dr()] =
-                        self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
+                    let address = self.registers[constants::RPC].wrapping_add(pc_offset);
+                    self.registers[inst.dr()] = self.memory[address as usize];
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -227,7 +228,8 @@ impl Computer {
                 constants::OPLOADIND => {
                     self.debug_println("got oploadind");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    let addr = self.memory[(self.registers[constants::RPC] + pc_offset) as usize];
+                    let addr = self.memory
+                        [self.registers[constants::RPC].wrapping_add(pc_offset) as usize];
                     self.registers[inst.dr()] = self.memory[addr as usize];
 
                     self.update_flags(self.registers[inst.dr()]);
@@ -237,7 +239,7 @@ impl Computer {
                     self.debug_println("got oploadreg");
                     let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
                     self.registers[inst.dr()] =
-                        self.memory[(self.registers[inst.base_r()] + offset6) as usize];
+                        self.memory[self.registers[inst.base_r()].wrapping_add(offset6) as usize];
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -245,7 +247,8 @@ impl Computer {
                 constants::OPLOADEA => {
                     self.debug_println("got oploadea");
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    self.registers[inst.dr()] = self.registers[constants::RPC] + pc_offset9;
+                    self.registers[inst.dr()] =
+                        self.registers[constants::RPC].wrapping_add(pc_offset9);
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -260,8 +263,8 @@ impl Computer {
                 constants::OPSTORE => {
                     self.debug_println("got opstore");
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    self.memory[(self.registers[constants::RPC] + pc_offset9) as usize] =
-                        self.registers[inst.dr()]; // this is really a source register, but it's in the position of the destination register
+                    let address = self.registers[constants::RPC].wrapping_add(pc_offset9);
+                    self.memory[address as usize] = self.registers[inst.dr()]; // this is really a source register, but it's in the position of the destination register
                 }
 
                 constants::OPSTOREIND => {
@@ -276,8 +279,8 @@ impl Computer {
                 constants::OPSTOREREG => {
                     self.debug_println("got opstorereg");
                     let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
-                    self.memory[(self.registers[inst.base_r()] + offset6) as usize] =
-                        self.registers[inst.dr()]; // this is really a source register
+                    let address = self.registers[inst.base_r()].wrapping_add(offset6);
+                    self.memory[address as usize] = self.registers[inst.dr()]; // this is really a source register
                 }
 
                 constants::OPTRAP => {
