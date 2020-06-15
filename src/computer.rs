@@ -99,7 +99,8 @@ impl Computer {
 
             constants::TRAPGETC => {
                 let g = Getch::new();
-                self.debug_println(&format!("got {}", g.getch().unwrap() as char));
+                let c = g.getch().unwrap() as char;
+                self.registers[constants::R0] = c as u16;
             }
 
             constants::TRAPHALT => {
