@@ -72,7 +72,7 @@ impl Instruction {
     }
 
     pub fn is_base_r(&self) -> bool {
-        self.n_flag()
+        self.chunk(11, 11) == 0
     }
 
     pub fn offset6(&self) -> u16 {
