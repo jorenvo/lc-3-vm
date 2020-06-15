@@ -1,6 +1,9 @@
 LC-3 VM in Rust
 ===============
 
+This is an implementation of the Little Computer 3. For more info see:
+https://en.wikipedia.org/wiki/Little_Computer_3
+
 To run:
 $ cargo run -- -f programs/2048.obj
 
