@@ -91,10 +91,13 @@ impl Computer {
                     print!("{}", self.memory[string_addr] as u8 as char);
                     string_addr += 1;
                 }
+
+                std::io::stdout().flush().unwrap();
             }
 
             constants::TRAPOUT => {
                 print!("{}", self.registers[constants::R0] as u8 as char);
+                std::io::stdout().flush().unwrap();
             }
 
             constants::TRAPGETC => {
