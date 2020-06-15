@@ -1,12 +1,15 @@
 use crate::constants;
 use crate::instruction::Instruction;
 use getch::Getch;
+use std::io::Write;
+use std::os::unix::io::AsRawFd;
 
 pub struct Computer {
     memory: Vec<u16>,
     registers: Vec<u16>,
     running: bool,
     debug_mode: bool,
+    getch: Getch,
 }
 
 impl Computer {
@@ -17,11 +20,15 @@ impl Computer {
         let registers: Vec<u16> = vec![0; REGISTER_COUNT];
         let running = true;
 
+        // Instantiate this early. It has the side-effect of disabling line-buffering in the terminal.
+        let getch = Getch::new();
+
         Computer {
             memory,
             registers,
             running,
             debug_mode,
+            getch,
         }
     }
 
@@ -43,6 +50,34 @@ impl Computer {
                 ));
             }
         }
+    }
+
+    unsafe fn key_waiting(&self) -> bool {
+        let nfds = 1;
+        let null = std::ptr::null_mut();
+        let mut readfds: libc::fd_set = std::mem::zeroed();
+        libc::FD_ZERO(&mut readfds);
+        libc::FD_SET(std::io::stdin().as_raw_fd(), &mut readfds);
+
+        let mut timeout = libc::timeval {
+            tv_sec: 0,
+            tv_usec: 0,
+        };
+        libc::select(nfds, &mut readfds, null, null, &mut timeout) > 0
+    }
+
+    fn read_mem(&mut self, address: usize) -> u16 {
+        if address == constants::MRKBSR {
+            let key_waiting = unsafe { self.key_waiting() };
+            if key_waiting {
+                self.memory[constants::MRKBSR] = 1 << 15;
+                self.memory[constants::MRKBDR] = self.getch.getch().unwrap() as u16;
+            } else {
+                self.memory[constants::MRKBSR] = 0;
+            }
+        }
+
+        self.memory[address as usize]
     }
 
     /// Sign extends an `n_bits`-bits number to 16 bits
@@ -87,8 +122,8 @@ impl Computer {
             constants::TRAPPUTS => {
                 let mut string_addr = self.registers[constants::R0] as usize;
 
-                while self.memory[string_addr] != 0 {
-                    print!("{}", self.memory[string_addr] as u8 as char);
+                while self.read_mem(string_addr) != 0 {
+                    print!("{}", self.read_mem(string_addr) as u8 as char);
                     string_addr += 1;
                 }
 
@@ -101,8 +136,7 @@ impl Computer {
             }
 
             constants::TRAPGETC => {
-                let g = Getch::new();
-                let c = g.getch().unwrap() as char;
+                let c = self.getch.getch().unwrap() as char;
                 self.registers[constants::R0] = c as u16;
             }
 
@@ -131,9 +165,9 @@ impl Computer {
             constants::RCOND,
         ];
         while self.running {
-            let inst = Instruction::new(self.memory[self.registers[constants::RPC] as usize]);
+            let inst = Instruction::new(self.read_mem(self.registers[constants::RPC] as usize));
 
-            // immediately go to next instruction, LDI assumes this
+            // immediately set RPC to the next instruction, offsets relative to the program counter are always +1
             self.registers[constants::RPC] += 1;
 
             self.debug_println(&format!("Processing instruction {}", inst));
@@ -219,14 +253,14 @@ impl Computer {
                     } else {
                         self.registers[constants::RPC]
                             .wrapping_add(self.sign_extend_to_16_bits(inst.pc_offset11(), 11))
-                    }
+                    };
                 }
 
                 constants::OPLOAD => {
                     self.debug_println("got load");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     let address = self.registers[constants::RPC].wrapping_add(pc_offset);
-                    self.registers[inst.dr()] = self.memory[address as usize];
+                    self.registers[inst.dr()] = self.read_mem(address as usize);
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -234,9 +268,9 @@ impl Computer {
                 constants::OPLOADIND => {
                     self.debug_println("got oploadind");
                     let pc_offset = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
-                    let addr = self.memory
-                        [self.registers[constants::RPC].wrapping_add(pc_offset) as usize];
-                    self.registers[inst.dr()] = self.memory[addr as usize];
+                    let addr = self
+                        .read_mem(self.registers[constants::RPC].wrapping_add(pc_offset) as usize);
+                    self.registers[inst.dr()] = self.read_mem(addr as usize);
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -245,7 +279,7 @@ impl Computer {
                     self.debug_println("got oploadreg");
                     let offset6 = self.sign_extend_to_16_bits(inst.offset6(), 6);
                     self.registers[inst.dr()] =
-                        self.memory[self.registers[inst.base_r()].wrapping_add(offset6) as usize];
+                        self.read_mem(self.registers[inst.base_r()].wrapping_add(offset6) as usize);
 
                     self.update_flags(self.registers[inst.dr()]);
                 }
@@ -278,7 +312,7 @@ impl Computer {
                     let pc_offset9 = self.sign_extend_to_16_bits(inst.pc_offset9(), 9);
                     let offset = self.registers[constants::RPC] + pc_offset9;
 
-                    let address = self.memory[offset as usize];
+                    let address = self.read_mem(offset as usize);
                     self.memory[address as usize] = self.registers[inst.dr()]; // this is really a source register
                 }
 

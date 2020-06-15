@@ -43,5 +43,9 @@ pub const TRAPIN: u16 = 0x23; // get character from keyboard, echoed onto the te
 pub const TRAPPUTSP: u16 = 0x24; // output a byte string
 pub const TRAPHALT: u16 = 0x25; // halt the program
 
+// Memory mapped registers
+pub const MRKBSR: usize = 0xFE00; // keyboard status
+pub const MRKBDR: usize = 0xFE02; // keyboard data
+
 // Misc
 pub const DEFAULT_START: u16 = 0x3000;

@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 clap = "2.33.1"
 getch = "0.2.1"
+libc = "0.2.71"
