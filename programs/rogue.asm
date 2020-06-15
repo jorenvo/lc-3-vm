@@ -290,7 +290,7 @@ RAND
     LD  R2, SEED
     AND R0, R0, x0
 RAND_MULTIPLY     ; a * seed
-    ADD R0, R0, R2
+    ADD R0, R0, R2 ; JOV: loop here
     ADD R1, R1, #-1
     BRp RAND_MULTIPLY
     LD  R1, SEED_C
