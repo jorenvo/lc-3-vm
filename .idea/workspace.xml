@@ -17,10 +17,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81038b68-0975-47c7-ba50-d7540e429e37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/instruction.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/computer.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/computer.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
   </component>
   <component name="RunManager" selected="Cargo Command.Test computer::tests">
     <configuration name="Test computer::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
@@ -119,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592084615907</updated>
       <workItem from="1592084618621" duration="5137000" />
-      <workItem from="1592091467793" duration="16529000" />
+      <workItem from="1592091467793" duration="36729000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1592084900536</created>
@@ -219,7 +218,91 @@
       <option name="project" value="LOCAL" />
       <updated>1592157211580</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Create Instruction&#10;&#10;To hide and centralize the bit twiddling.">
+      <created>1592159919361</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1592159919361</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Implement OPLOADIND">
+      <created>1592160456431</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1592160456431</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Implement OPBR">
+      <created>1592161274388</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1592161274388</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Implement OPJUMP">
+      <created>1592162992651</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1592162992651</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Implement OPJMPSUBR">
+      <created>1592163565455</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1592163565455</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Implement OPLOAD">
+      <created>1592163759986</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1592163759986</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Implement OPLOADREG">
+      <created>1592164064190</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1592164064190</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Implement OPLOADEA">
+      <created>1592168985728</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1592168985728</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Implement OPSTORE&#10;&#10;And skip OPRTI and OPRES for now.">
+      <created>1592169495895</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1592169495895</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Implement OPSTOREREG">
+      <created>1592169899461</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1592169899461</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Handle TRAPPUTS and TRAPHALT&#10;&#10;Hello world works!">
+      <created>1592171329502</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1592171329502</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Handle TRAPGETC&#10;&#10;Read a single character using the Getch crate. Don't really want to mess&#10;with terminal stuff manually.">
+      <created>1592172206403</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1592172206403</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +321,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
     <MESSAGE value="Read assembled file" />
     <MESSAGE value="Take assembly file path as argument" />
     <MESSAGE value="Add rogue.obj" />
@@ -252,7 +334,19 @@
     <MESSAGE value="Handle negative numbers" />
     <MESSAGE value="Handle OPAND" />
     <MESSAGE value="Handle two register versions of OPADD and OPAND" />
-    <option name="LAST_COMMIT_MESSAGE" value="Handle two register versions of OPADD and OPAND" />
+    <MESSAGE value="Create Instruction&#10;&#10;To hide and centralize the bit twiddling." />
+    <MESSAGE value="Implement OPLOADIND" />
+    <MESSAGE value="Implement OPBR" />
+    <MESSAGE value="Implement OPJUMP" />
+    <MESSAGE value="Implement OPJMPSUBR" />
+    <MESSAGE value="Implement OPLOAD" />
+    <MESSAGE value="Implement OPLOADREG" />
+    <MESSAGE value="Implement OPLOADEA" />
+    <MESSAGE value="Implement OPSTORE&#10;&#10;And skip OPRTI and OPRES for now." />
+    <MESSAGE value="Implement OPSTOREREG" />
+    <MESSAGE value="Handle TRAPPUTS and TRAPHALT&#10;&#10;Hello world works!" />
+    <MESSAGE value="Handle TRAPGETC&#10;&#10;Read a single character using the Getch crate. Don't really want to mess&#10;with terminal stuff manually." />
+    <option name="LAST_COMMIT_MESSAGE" value="Handle TRAPGETC&#10;&#10;Read a single character using the Getch crate. Don't really want to mess&#10;with terminal stuff manually." />
   </component>
   <component name="WindowStateProjectService">
     <state x="837" y="421" key="#Notifications" timestamp="1592084633130">
@@ -263,26 +357,26 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="192" y="118" key="DiffContextDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1592106527785" />
-    <state width="1686" height="255" key="GridCell.Tab.0.bottom" timestamp="1592155661975">
+    <state width="1686" height="255" key="GridCell.Tab.0.bottom" timestamp="1592171255193">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1686" height="255" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661975" />
-    <state width="1686" height="255" key="GridCell.Tab.0.center" timestamp="1592155661974">
+    <state width="1686" height="255" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1592171255193" />
+    <state width="1686" height="255" key="GridCell.Tab.0.center" timestamp="1592171255192">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1686" height="255" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661974" />
-    <state width="1686" height="255" key="GridCell.Tab.0.left" timestamp="1592155661974">
+    <state width="1686" height="255" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1592171255192" />
+    <state width="1686" height="255" key="GridCell.Tab.0.left" timestamp="1592171255191">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1686" height="255" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661974" />
-    <state width="1686" height="255" key="GridCell.Tab.0.right" timestamp="1592155661975">
+    <state width="1686" height="255" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1592171255191" />
+    <state width="1686" height="255" key="GridCell.Tab.0.right" timestamp="1592171255192">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="1686" height="255" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592155661975" />
-    <state x="923" y="246" key="SettingsEditor" timestamp="1592106390880">
+    <state width="1686" height="255" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1592171255192" />
+    <state x="923" y="246" key="SettingsEditor" timestamp="1592172190824">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="923" y="246" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592106390880" />
+    <state x="923" y="246" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1592172190824" />
     <state x="560" y="291" key="Vcs.Push.Dialog.v2" timestamp="1592106536514">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
@@ -291,9 +385,9 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="748" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1057@0.23.1920.1057" timestamp="1592106488648" />
-    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup" timestamp="1592117596400">
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup" timestamp="1592173356442">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1592117596400" />
+    <state x="625" y="284" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1592173356442" />
   </component>
 </project>

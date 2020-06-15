@@ -350,7 +350,7 @@ mod tests {
 
     #[test]
     fn test_sign_extend_positive() {
-        let c = Computer::new();
+        let c = Computer::new(false);
         assert_eq!(
             c.sign_extend_to_16_bits(0b0000_0000_0000_0100, 5),
             0b0000_0000_0000_0100
@@ -359,7 +359,7 @@ mod tests {
 
     #[test]
     fn test_sign_extend_negative() {
-        let c = Computer::new();
+        let c = Computer::new(false);
         assert_eq!(
             c.sign_extend_to_16_bits(0b0000_0000_0001_0100, 5),
             0b1111_1111_1111_0100
